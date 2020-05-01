@@ -1,0 +1,209 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="DashBoard.master.cs" Inherits="DashBoard" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+         <title>E-Notice Board Process</title>
+ <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+  <link rel="stylesheet" type="text/css" href="dashboard.css"/>
+  <link rel="stylesheet" type="text/css" href="CSS/staff.css"  />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
+  <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+  <script type="text/javascript" src="~/Scripts/jquery-1.9.1.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<asp:ContentPlaceHolder id="head" runat="server">
+    <style type="text/css">
+
+
+
+    header .margin-grid 
+    {
+    width: 100%;
+    max-width: 1100px;
+     }
+    .div
+    {  
+       display:block;
+    }
+
+    </style>
+ </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">             
+       <div class="container-fluid"><br />
+           <div class="notice">
+               <img src="Image/E-Notice%20.png" style="height: 150px;width:100%;padding: 10px 80px 5px 0px;"/>     
+           </div><br />
+      </div>
+
+      <div class="navbar navbar-static-top " style="background-color:#fddb3a; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: medium;" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+       <!-- <span class="sr-only">Toggle navigation</span> -->
+        <span class="icon-bar"  style="background-color:black" ></span>
+        <span class="icon-bar"  style="background-color:black" ></span>
+        <span class="icon-bar"  style="background-color:black" ></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="Home.aspx">Home</a></li>
+        <li><a href="CollegeProfile.aspx">College Profile</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Course<b class="caret"></b></a>
+          <ul class="dropdown-menu" style="background-color:lightsteelblue" >
+            <li><a href="Faculty_arts.aspx" >Arts</a></li>
+            <li><a href="Faculty_commerce.aspx">Commerce</a></li>
+            <li><a href="Faculty_science.aspx">Science</a></li>
+          </ul>
+        </li>    
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Subjects<b class="caret"></b></a>
+          <ul class="dropdown-menu" style="background-color:lightsteelblue">
+            <li><a href="BscSyllabus.aspx" >B.SC. Syllabus</a></li>
+            <li><a href="BcomSyllabus.aspx">B.COM. Syllabus</a></li>
+            <li><a href="BmsSyllabus.aspx">B.M.S. Syllabus</a></li>
+            <li><a href="McaSyllabus.aspx"> M.C.A. Syllabus</a></li>
+          </ul>
+        </li>    
+           <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Staff<b class="caret"></b></a>
+          <ul class="dropdown-menu" style="background-color:lightsteelblue">
+            <li><a href="Teachingstaff.aspx" >Teaching Staff</a></li>
+            <li><a href="Non-teachingstaff.aspx">Junior College</a></li>
+            <li><a href="Administrative.aspx">Administrative Staff</a></li>
+          </ul>
+        </li>
+            <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Exams<b class="caret"></b></a>
+          <ul class="dropdown-menu" style="background-color:lightsteelblue">
+            <li><a href="FeesExam.aspx">Fees</a></li>
+            <li><a href="ResultExam.aspx">Result</a></li>
+            <li><a href="TimetableExam.aspx">Time Table</a></li>
+          </ul>
+        </li>
+      <li><a href="Feedback.aspx">FeedBack</a></li>
+      <li><a href="Notice.aspx">Notice</a></li>
+      <li><a href="Home.aspx">About Us</a></li>
+      </ul>
+       <ul class="nav navbar-nav navbar-right">
+         <li><a href="Login.aspx"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+         <li><a href="AdminLogin.aspx"><span class="glyphicon glyphicon-user"></span> Admin Login</a></li>&nbsp;&nbsp;
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+
+        <!-- navbar -->
+       
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <div>
+                        <h1 class="text-center news" style="background-color: #4a47a3; color: white; height: 100px; border-radius: 10px; padding-top: 25px">Latest Notice</h1>
+                    </div>
+                    <div style="margin-left: 10px; margin-right: 10px;">
+                   
+                            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" Width="100%" PageSize="5" ShowHeader="False" GridLines="Horizontal" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" EnableTheming="True" DataSourceID="SqlDataSource1">
+                            <Columns>
+                                <asp:BoundField DataField="message" HeaderText="message" SortExpression="message" HeaderStyle-Height="30px">
+                                </asp:BoundField>
+                               <asp:ImageField DataImageUrlField="image"></asp:ImageField>
+                            </Columns>
+                            <FooterStyle BackColor="#CCCC99" ForeColor="Black" Font-Names="Verdana" Font-Size="Medium" />
+                            <HeaderStyle Font-Names="Verdana" Font-Size="Medium" BackColor="#333333" Font-Bold="True" ForeColor="White" />
+                            <PagerSettings PageButtonCount="5" />
+                            <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+                            <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                            <SortedAscendingCellStyle BackColor="#F7F7F7" />
+                            <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+                            <SortedDescendingCellStyle BackColor="#E5E5E5" />
+                            <SortedDescendingHeaderStyle BackColor="#242121" />
+                        </asp:GridView>
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:connectionstring %>" SelectCommand="SELECT [message], [image] FROM [Message] ORDER BY [date], [time], [year]"></asp:SqlDataSource>
+                        <br />
+                    </div>
+                    <div>
+                        <h1 class="text-center" style="background-color: #4a47a3; color: #FFFFFF; height: 100px; border-radius: 10px; padding-top: 25px">Important Links</h1>                     
+                        <div>
+                            <table class="table table-hover table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <asp:HyperLink ID="HyperLink14" runat="server" Style="color: red" NavigateUrl="http://www.maharashtra.gov.in" Target="_blank">Maharashtra Government</asp:HyperLink></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:HyperLink ID="HyperLink15" runat="server" Style="color: red" NavigateUrl="http://www.mu.ac.in" Target="_blank">Mumbai University</asp:HyperLink></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+    
+ <footer>
+    <div class="footer" id="footer"  style="background-color:#004a7c ">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">   
+                    <h2 class="text-success" style="color:white"> E-Notice Board process</h2>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <h3 style="color:white"> Contact </h3><br />
+                   <p style="color:yellow"><a href="https://www.google.com/maps/place/Vidya+Varidhi+College/@19.4270219,72.8359427,17z/data=!4m8!1m2!2m1!1ssantosh+bhuwan+near+vidya+varidhi+vidhalaya+nallasopara+!3m4!1s0x0:0x2d99b1c85246590e!8m2!3d19.4278375!4d72.8378058" style="color:yellow"><i class="fa fa-map-marker" style="font-size:20px"></i>:&nbsp;Nallasopara (East), Dist. Palghar-401209.<br /> Maharashtra, India</a></p>
+                    <p style="color:yellow"><a href="tel:8007094060" style="color:yellow" ><i class="fa fa-phone"  style="font-size:20px"></i>&nbsp;:&nbsp;8007094060</a>
+                        <br/><br />
+                       <a href="mailto:dhiraj7219@gmail.com" style="color:yellow">
+                         <i class="fa fa-envelope"  style="font-size:20px"></i>&nbsp;:&nbsp;dhiraj7219@gmail.com
+                       </a>
+                    </p>
+                    <br />
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <h3 style="color:white"> Quick Links </h3><br />
+                    <p><asp:HyperLink ID="home" runat="server" style="color:yellow" NavigateUrl="~/Home.aspx">Home</asp:HyperLink><br /></p>
+                    <p><asp:HyperLink ID="profile" runat="server" style="color:yellow" NavigateUrl="~/CollegeProfile.aspx">College Profile</asp:HyperLink><br /></p>
+                    <p><asp:HyperLink ID="staff" runat="server" NavigateUrl="~/FeedBack.aspx" style="color:yellow">Feedback</asp:HyperLink><br /></p>
+                    <p><asp:HyperLink ID="contact" runat="server" NavigateUrl="#" style="color:yellow">Contact Us</asp:HyperLink><br /></p>
+                </div>  
+                <div class="col-lg-3 col-md-3">
+                     <h3 style="color:white"> Contact On Social Media </h3>
+                    <p><a href="https://www.facebook.com/dhiraj.vishwakarma.7165">
+                        <asp:Image ID="Image1" runat="server" ImageUrl="~/Image/facebook.PNG" class="img-circle" Height="60" Width="55" /></a>&nbsp;
+                      <a href="https://twitter.com/Dhiraj67147567">
+                         <asp:Image ID="Image2" runat="server" ImageUrl="~/Image/twitter.PNG" class="img-circle"  Height="60" Width="55"/></a>&nbsp;           
+                      <a href="https://www.linkedin.com/in/dhiraj-vishwakarma-6b468318b/">
+                         <asp:Image ID="Image4" runat="server" ImageUrl="~/Image/linkdin.PNG" class="img-circle"  Height="60" Width="55"/></a>
+                        </p>
+                </div>        
+        </div>
+    </div>
+                        
+    <div class="footer-bottom">
+        <div class="container-fluid" style="background-color:#8dc6ff">
+            <br />
+            <h4 class="text-center " style="color:red"> Copyright © E-Notice Board 2020 </h4>
+            <h4 class="text-center " style="color:red">Designed and Developed by Dheeraj Vishwakarma</h4>
+        </div>
+    </div> 
+ </div> 
+</footer>
+    </form>
+</body>
+</html>
